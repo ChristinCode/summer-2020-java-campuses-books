@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +14,7 @@
         <nav class="header__nav">
           <ul class="header__nav-list">
             <li class="header__nav-list-item">
-              <a href="campuses.html" class="header__nav-link">Home</a>
+              <a href="campuses-template.html" class="header__nav-link">Home</a>
             </li>
             <li class="header__nav-list-item">
               <a href="" class="header__nav-link">#HashTags</a>
@@ -22,15 +23,11 @@
         </nav>
       </header>
       <main>
-        <section class="book">
-          <h2 class="book__title">Head First Java</h2>
-          <h3 class="book__author">Kathy Sierra</h3>
-          <p class="book__isbn">ISBN: 978-0-596-00920-5</p>
-          <p class="book__description">
-            Head First Java is a complete learning experience in Java and object
-            oriented programming.
-          </p>
-        </section>
+        <ul class="campuses__list">
+          <li th:each="campus: ${campuses}" class="campuses__list-item">
+            <a th:text="${campus.name}" th:href="@{/campuses/${campus.name}" class="campuses__link">Columbus</a>
+          </li>
+        </ul>
       </main>
     </div>
   </body>
