@@ -10,8 +10,14 @@ public class BookStorage {
     Map<String, Book> books = new HashMap<>();
 
     public BookStorage(){
-        books.put("Head First Java", new Book("Head First Java", "Kathy Sierra", "4440333044-2","Good book to learn Java."));
-        books.put("Test Driven Development by Example", new Book("Test Driven Development by Example", "Kent Beck", "44443333044-2","Good book to learn TDD."));
+        Book book1 = new Book("Head First Java", "Kathy Sierra", "4440333044-2", "Good book to learn Java.");
+        Book book2 = new Book("Test Driven Development by Example", "Kent Beck", "44443333044-2", "Good book to learn TDD.");
+        Book book3 =new Book("Head First C Sharp", "Bert Bates", "422-333044-2","Good book to learn C#.");
+        Book book4 =new Book("Agile Development Principles, Patterns, and Practices for C Sharp", "Micah Martin", "4543-54-2","SOLID principles and more for C#.");
+        books.put(book1.getTitle(), book1);
+        books.put(book2.getTitle(), book2);
+        books.put(book3.getTitle(),book3);
+        books.put(book4.getTitle(),book4);
     }
 
     public Book findBookByTitle(String bookTitle) {

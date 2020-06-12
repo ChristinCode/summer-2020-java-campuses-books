@@ -27,7 +27,7 @@
         <p th:text = "${campus.description}" class="campus__description">Above an all you can eat sushi restaurant.</p>
         <ul class="books__list">
           <li th:each="book: ${campus.books}" class="books__list-item">
-            <a th:text= "${book.title}" th:href="@{/books/${book.title}}" class="books__link">Head First Java</a>
+            <a th:text= "${book.title}" th:href="@{'/books/'+${book.title}}" class="books__link">Head First Java</a>
           </li>
         </ul>
       </main>

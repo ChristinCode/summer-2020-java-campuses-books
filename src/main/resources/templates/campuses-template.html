@@ -25,7 +25,7 @@
       <main>
         <ul class="campuses__list">
           <li th:each="campus: ${campuses}" class="campuses__list-item">
-            <a th:text="${campus.name}" th:href="@{/campuses/${campus.name}" class="campuses__link">Columbus</a>
+            <a th:text="${campus.name}" th:href="@{'/campuses/'+${campus.name}" class="campuses__link">Columbus</a>
           </li>
         </ul>
       </main>
