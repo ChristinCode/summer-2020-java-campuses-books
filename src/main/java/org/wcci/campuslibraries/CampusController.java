@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Controller
 public class CampusController {
     private CampusStorage campusStorage;
@@ -19,4 +20,11 @@ public class CampusController {
         model.addAttribute("campus", campusStorage.findCampusByName(campusName));
         return "campus-template";
     }
+
+    @RequestMapping("campuses")
+    public String showAllCampuses(Model model){
+        model.addAttribute("campuses", campusStorage.findAllCampuses());
+        return "campuses-template";
+    }
+
 }

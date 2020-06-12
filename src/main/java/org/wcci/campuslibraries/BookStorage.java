@@ -2,6 +2,7 @@ package org.wcci.campuslibraries;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,5 +23,9 @@ public class BookStorage {
 
     public Book findBookByTitle(String bookTitle) {
         return books.get(bookTitle);
+    }
+
+    public Collection<Book> findAllBooks() {
+        return books.values();
     }
 }
