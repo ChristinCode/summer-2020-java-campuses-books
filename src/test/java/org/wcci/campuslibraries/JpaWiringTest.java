@@ -6,7 +6,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.util.Optional;
-import java.util.logging.Handler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,16 +17,18 @@ public class JpaWiringTest {
     @Autowired
     private CampusRepository campusRepo;
     @Autowired
+    private AuthorRepository authorRepo;
+    @Autowired
     private TestEntityManager entityManager;
 
     @Test
-    public void campusesCanHaveMultipleBooks(){
+    public void campusesCanHaveMultipleBooks() {
         Campus testCampus = new Campus("Test Campus", "Campus used for testing.");
         campusRepo.save(testCampus);
 
-        Book testBook1 = new Book("Book", "Tester", "ISBN", "Book for testing.", testCampus);
+        Book testBook1 = new Book("Book", "ISBN", "Book for testing.", testCampus);
         bookRepo.save(testBook1);
-        Book testBook2 = new Book("Another Book", "Testy", "ISBN-2", "Another book for testing.", testCampus);
+        Book testBook2 = new Book("Another Book", "ISBN-2", "Another book for testing.", testCampus);
         bookRepo.save(testBook2);
 
         entityManager.flush();
@@ -39,6 +40,32 @@ public class JpaWiringTest {
         assertThat(retrievedCampus).isEqualTo(testCampus);
         assertThat(retrievedCampus.getBooks()).containsExactlyInAnyOrder(testBook1, testBook2);
 
+    }
+
+    @Test
+    public void authorsShouldHaveMultipleBooks() {
+        Author testAuthor1 = new Author("Testy", "McTesterson");
+        authorRepo.save(testAuthor1);
+        Author testAuthor2 = new Author("Tester", "Testington");
+        authorRepo.save(testAuthor2);
+        Campus testCampus = new Campus("Test Campus", "Campus used for testing.");
+        campusRepo.save(testCampus);
+        Book testBook1 = new Book("Book", "ISBN", "Book for testing.", testCampus, testAuthor1);
+        bookRepo.save(testBook1);
+        Book testBook2 = new Book("Another Book", "ISBN-2", "Another book for testing.", testCampus, testAuthor2);
+        bookRepo.save(testBook2);
+        Book testBook3 = new Book("Yet Another Book", "ISBN-3", "Yet another book for testing.",
+                testCampus, testAuthor1, testAuthor2);
+        bookRepo.save(testBook3);
+
+        entityManager.flush();
+        entityManager.clear();
+
+        Author retrievedAuthor1 = authorRepo.findById(testAuthor1.getId()).get();
+        assertThat(retrievedAuthor1).isEqualTo(testAuthor1);
+        assertThat(retrievedAuthor1.getBooks()).containsExactlyInAnyOrder(testBook1, testBook3);
+        Author retrievedAuthor2 = authorRepo.findById(testAuthor2.getId()).get();
+        assertThat(retrievedAuthor2.getBooks()).containsExactlyInAnyOrder(testBook2, testBook3);
     }
 
 }

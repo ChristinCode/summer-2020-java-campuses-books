@@ -1,6 +1,9 @@
 package org.wcci.campuslibraries;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -9,7 +12,8 @@ public class Book {
     @GeneratedValue
     private long id;
     private String title;
-    private String author;
+    @ManyToMany
+    private Collection<Author> authors;
     private String isbn;
     private String description;
     @ManyToOne
@@ -17,9 +21,9 @@ public class Book {
 
     protected Book(){}
 
-    public Book(String title, String author, String isbn, String description, Campus campus) {
+    public Book(String title, String isbn, String description, Campus campus, Author... authors) {
         this.title = title;
-        this.author = author;
+        this.authors = new ArrayList<>(Arrays.asList(authors));
         this.isbn = isbn;
         this.description = description;
         this.campus = campus;
@@ -29,8 +33,8 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public Collection<Author> getAuthors() {
+        return authors;
     }
 
     public String getIsbn() {
@@ -54,7 +58,6 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", description='" + description + '\'' +
                 ", campus=" + campus +
@@ -68,7 +71,6 @@ public class Book {
         Book book = (Book) o;
         return id == book.id &&
                 Objects.equals(title, book.title) &&
-                Objects.equals(author, book.author) &&
                 Objects.equals(isbn, book.isbn) &&
                 Objects.equals(description, book.description) &&
                 Objects.equals(campus, book.campus);
@@ -76,6 +78,6 @@ public class Book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, isbn, description, campus);
+        return Objects.hash(id, title, isbn, description, campus);
     }
 }

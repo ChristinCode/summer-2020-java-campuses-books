@@ -25,7 +25,7 @@
       <main>
         <section class="book">
           <h2 th:text="${bookToDisplay.title}" class="book__title">Head First Java</h2>
-          <h3 th:text="${bookToDisplay.author}" class="book__author">Kathy Sierra</h3>
+          <h3 th:each="author :${bookToDisplay.authors}" th:text="${author.firstName} + ' '+ ${author.lastName}" class="book__author">Kathy Sierra</h3>
           <p th:text="${bookToDisplay.isbn}" class="book__isbn">ISBN: 978-0-596-00920-5</p>
           <p th:text="${bookToDisplay.description}" class="book__description">
             Head First Java is a complete learning experience in Java and object

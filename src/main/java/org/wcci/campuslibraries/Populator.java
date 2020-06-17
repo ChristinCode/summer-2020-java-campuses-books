@@ -10,6 +10,8 @@ public class Populator implements CommandLineRunner {
     CampusRepository campusRepo;
     @Autowired
     BookRepository bookRepo;
+    @Autowired
+    AuthorRepository authorRepo;
 
 
     @Override
@@ -19,17 +21,22 @@ public class Populator implements CommandLineRunner {
         campusRepo.save(columbus);
         campusRepo.save(cleveland);
 
-        Book book1 = new Book("Head First Java", "Kathy Sierra", "4440333044-2",
-                "Good book to learn Java.", columbus);
-        Book book2 = new Book("Test Driven Development by Example", "Kent Beck",
-                "44443333044-2", "Good book to learn TDD.", columbus);
+        Author author1 = new Author("Kathy", "Sierra");
+        Author author2 = new Author("Kent", "Beck");
+        Author author3 = new Author("Bert", "Bates");
+        Author author4 = new Author("Micah", "Martin");
+        authorRepo.save(author1);
+        authorRepo.save(author2);
+        authorRepo.save(author3);
+        authorRepo.save(author4);
+
+        Book book1 = new Book("Head First Java", "4440333044-2", "Good book to learn Java.", columbus, author1, author3);
+        Book book2 = new Book("Test Driven Development by Example", "44443333044-2", "Good book to learn TDD.", columbus, author2);
         bookRepo.save(book1);
         bookRepo.save(book2);
-        Book book3 = new Book("Head First C Sharp", "Bert Bates", "422-333044-2",
-                "Good book to learn C#.", cleveland);
+        Book book3 = new Book("Head First C Sharp", "422-333044-2", "Good book to learn C#.", cleveland, author3);
         Book book4 = new Book("Agile Development Principles, Patterns, and Practices for C Sharp",
-                "Micah Martin", "4543-54-2",
-                "SOLID principles and more for C#.",cleveland);
+                "4543-54-2", "SOLID principles and more for C#.", cleveland, author4);
         bookRepo.save(book3);
         bookRepo.save(book4);
     }
