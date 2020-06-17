@@ -1,17 +1,32 @@
 package org.wcci.campuslibraries;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class CampusStorageTest {
 
+    private CampusRepository campusRepo;
+    private CampusStorage underTest;
+
+    @BeforeEach
+    void setUp() {
+        campusRepo = mock(CampusRepository.class);
+        underTest = new CampusStorage(campusRepo);
+    }
+
     @Test
     public void shouldFindColumbus(){
-        CampusRepository campusRepo = mock(CampusRepository.class);
-        CampusStorage underTest = new CampusStorage(campusRepo);
+        when(campusRepo.findByName("Columbus")).thenReturn(new Campus("Columbus",""));
         Campus result = underTest.findCampusByName("Columbus");
         assertThat(result.getName()).isEqualTo("Columbus");
+    }
+    @Test
+    public void shouldAddCampus(){
+        Campus testCampus = new Campus("Test Campus", "Campus for testing.");
+        underTest.addCampus(testCampus);
+        verify(campusRepo).save(testCampus);
     }
 }

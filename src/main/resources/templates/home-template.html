@@ -30,6 +30,18 @@
             <a th:text="${campus.name}" th:href="@{'/campuses/'+${campus.name}}" class="campuses__link">Columbus</a>
           </li>
         </ul>
+        <form action="campuses/add" method="POST" class="new-campus-form">
+          <label for="new-campus__name-input" class="form__label">
+            New campus name:
+          </label>
+          <input type="text" name="name" class="form__name-input" id="new-campus__name-input">
+          <label for="new-campus__description-input" class="form__label">
+            New campus description:
+          </label>
+          <textarea name="description" class="form__description-input" id="new-campus__description-input"></textarea>
+          <button class="form__submit-button" id="new-campus__submit-button">Submit</button>
+
+        </form>
         </section>
         <section>
           <h2>Authors</h2>

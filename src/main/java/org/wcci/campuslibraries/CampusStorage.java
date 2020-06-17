@@ -17,4 +17,8 @@ public class CampusStorage {
     public Iterable<Campus> findAllCampuses() {
         return campusRepo.findAll();
     }
+
+    public void addCampus(Campus campus) {
+        campusRepo.save(campus);
+    }
 }
