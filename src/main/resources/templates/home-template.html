@@ -14,7 +14,7 @@
         <nav class="header__nav">
           <ul class="header__nav-list">
             <li class="header__nav-list-item">
-              <a href="campuses-template.html" class="header__nav-link">Home</a>
+              <a href="home-template.html" class="header__nav-link">Home</a>
             </li>
             <li class="header__nav-list-item">
               <a href="" class="header__nav-link">#HashTags</a>
@@ -23,13 +23,22 @@
         </nav>
       </header>
       <main>
+        <section>
         <h2>Campuses</h2>
         <ul class="campuses__list">
           <li th:each="campus: ${campuses}" class="campuses__list-item">
             <a th:text="${campus.name}" th:href="@{'/campuses/'+${campus.name}}" class="campuses__link">Columbus</a>
           </li>
         </ul>
-
+        </section>
+        <section>
+          <h2>Authors</h2>
+          <ul class="authors__list">
+            <li th:each="author: ${authors}" class="authors__list-item">
+              <a th:text="${author.firstName}+' '+${author.lastName}" th:href="@{'/authors/'+${author.id}}" class="authors__link">Columbus</a>
+            </li>
+          </ul>
+        </section>
       </main>
     </div>
   </body>

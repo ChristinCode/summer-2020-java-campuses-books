@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1 class="header__title">We Can Code IT Campus Libraries</h1>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-list-item">
+                    <a href="home-template.html" class="header__nav-link">Home</a>
+                </li>
+                <li class="header__nav-list-item">
+                    <a href="" class="header__nav-link">#HashTags</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2 th:text="${author.firstName} + ' ' + ${author.lastName}" class="author__name">Kathy Sierra</h2>
+
+        <ul class="books__list">
+            <li th:each="book: ${author.books}" class="books__list-item">
+                <a th:text="${book.title}" th:href="@{'/books/'+${book.title}}" class="books__link">Head First Java</a>
+            </li>
+        </ul>
+    </main>
+</div>
+</body>
+</html>

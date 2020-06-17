@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -24,7 +23,7 @@ public class CampusController {
     @RequestMapping("campuses")
     public String showAllCampuses(Model model){
         model.addAttribute("campuses", campusStorage.findAllCampuses());
-        return "campuses-template";
+        return "home-template";
     }
 
 }
