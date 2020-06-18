@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <h1 class="header__title">We Can Code IT Campus Libraries</h1>
-        <nav class="header__nav">
-          <ul class="header__nav-list">
-            <li class="header__nav-list-item">
-              <a href="home-template.html" class="header__nav-link">Home</a>
-            </li>
-            <li class="header__nav-list-item">
-              <a href="" class="header__nav-link">#HashTags</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <section>
-        <h2>Campuses</h2>
-        <ul class="campuses__list">
-          <li th:each="campus: ${campuses}" class="campuses__list-item">
-            <a th:text="${campus.name}" th:href="@{'/campuses/'+${campus.name}}" class="campuses__link">Columbus</a>
-          </li>
-        </ul>
-        <form action="campuses/add" method="POST" class="new-campus-form">
-          <label for="new-campus__name-input" class="form__label">
-            New campus name:
-          </label>
-          <input type="text" name="name" class="form__name-input" id="new-campus__name-input">
-          <label for="new-campus__description-input" class="form__label">
-            New campus description:
-          </label>
-          <textarea name="description" class="form__description-input" id="new-campus__description-input"></textarea>
-          <button class="form__submit-button" id="new-campus__submit-button">Submit</button>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/layout.css"/>
+</head>
+<body>
+<div class="container">
+    <header th:replace="fragments/header :: header" class="header">
+    </header>
 
-        </form>
+    <main>
+        <section>
+            <h2>Campuses</h2>
+            <ul class="campuses__list">
+                <li th:each="campus: ${campuses}" class="campuses__list-item">
+                    <a th:text="${campus.name}" th:href="@{'/campuses/'+${campus.name}}"
+                       class="campuses__link">Columbus</a>
+                </li>
+            </ul>
+            <form action="campuses/add" method="POST" class="new-campus-form">
+                <label for="new-campus__name-input" class="form__label">
+                    New campus name:
+                </label>
+                <input type="text" name="name" class="form__name-input" id="new-campus__name-input">
+                <label for="new-campus__description-input" class="form__label">
+                    New campus description:
+                </label>
+                <textarea name="description" class="form__description-input"
+                          id="new-campus__description-input"></textarea>
+                <button class="form__submit-button" id="new-campus__submit-button">Submit</button>
+
+            </form>
         </section>
         <section>
-          <h2>Authors</h2>
-          <ul class="authors__list">
-            <li th:each="author: ${authors}" class="authors__list-item">
-              <a th:text="${author.firstName}+' '+${author.lastName}" th:href="@{'/authors/'+${author.id}}" class="authors__link">Columbus</a>
-            </li>
-          </ul>
+            <h2>Authors</h2>
+            <ul class="authors__list">
+                <li th:each="author: ${authors}" class="authors__list-item">
+                    <a th:text="${author.firstName}+' '+${author.lastName}" th:href="@{'/authors/'+${author.id}}"
+                       class="authors__link">Columbus</a>
+                </li>
+            </ul>
         </section>
-      </main>
-    </div>
-  </body>
+    </main>
+</div>
+</body>
 </html>

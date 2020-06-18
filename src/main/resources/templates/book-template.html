@@ -1,38 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <h1 class="header__title">We Can Code IT Campus Libraries</h1>
-        <nav class="header__nav">
-          <ul class="header__nav-list">
-            <li class="header__nav-list-item">
-              <a href="home-template.html" class="header__nav-link">Home</a>
-            </li>
-            <li class="header__nav-list-item">
-              <a href="" class="header__nav-link">#HashTags</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <section class="book">
-          <h2 th:text="${bookToDisplay.title}" class="book__title">Head First Java</h2>
-          <h3 th:each="author :${bookToDisplay.authors}" th:text="${author.firstName} + ' '+ ${author.lastName}" class="book__author">Kathy Sierra</h3>
-          <p th:text="${bookToDisplay.isbn}" class="book__isbn">ISBN: 978-0-596-00920-5</p>
-          <p th:text="${bookToDisplay.description}" class="book__description">
-            Head First Java is a complete learning experience in Java and object
-            oriented programming.
-          </p>
-        </section>
-      </main>
-    </div>
-  </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/layout.css"/>
+</head>
+
+<body>
+  <div class="container">
+    <header th:replace="fragments/header :: header" class="header">
+    </header>
+    <main>
+      <section class="book">
+        <h2 th:text="${bookToDisplay.title}" class="book__title">Head First Java</h2>
+        <h3 th:each="author :${bookToDisplay.authors}" th:text="${author.firstName} + ' '+ ${author.lastName}"
+          class="book__author">Kathy Sierra</h3>
+        <p th:text="${bookToDisplay.isbn}" class="book__isbn">ISBN: 978-0-596-00920-5</p>
+        <p th:text="${bookToDisplay.description}" class="book__description">
+          Head First Java is a complete learning experience in Java and object
+          oriented programming.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+
 </html>

@@ -5,23 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/layout.css"/>
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <h1 class="header__title">We Can Code IT Campus Libraries</h1>
-        <nav class="header__nav">
-          <ul class="header__nav-list">
-            <li class="header__nav-list-item">
-              <a href="home-template.html" class="header__nav-link">Home</a>
-            </li>
-            <li class="header__nav-list-item">
-              <a href="" class="header__nav-link">#HashTags</a>
-            </li>
-          </ul>
-        </nav>
+      <header th:replace="fragments/header :: header" class="header">
       </header>
+  
       <main>
         <h2 th:text = "${campus.name}" class="campus__name">Columbus</h2>
         <p th:text = "${campus.description}" class="campus__description">Above an all you can eat sushi restaurant.</p>
