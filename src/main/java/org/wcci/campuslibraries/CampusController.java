@@ -29,6 +29,9 @@ public class CampusController {
     }
     @PostMapping("campuses/add")
     public String addNewCampus(String name, String description) {
+        if(campusStorage.findCampusByName(name)!=null){
+          return "redirect:/";
+        }
         Campus campusToAdd = new Campus(name, description);
         campusStorage.addCampus(campusToAdd);
         return "redirect:/";

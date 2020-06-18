@@ -44,6 +44,13 @@
                        class="authors__link">Columbus</a>
                 </li>
             </ul>
+            <form action="authors/add" method="POST" class="new-author-form">
+                <label for="new-author__first-name-input" class="form__label">New author first name:</label>
+                <input type="text" name="firstName" id="new-author__first-name-input">
+                <label for="new-author__last-name-input" class="form__label">New author last name:</label>
+                <input type="text" name="lastName" id="new-author__last-name-input">
+                <button type="submit">Submit</button>
+            </form>
         </section>
     </main>
 </div>
