@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    private final CampusRepository campusRepo;
-    private final AuthorRepository authorRepo;
+    private final CampusStorage campusStorage;
+    private final AuthorStorage authorStorage;
 
-    public HomeController(CampusRepository campusRepo, AuthorRepository authorRepo) {
-        this.campusRepo = campusRepo;
-        this.authorRepo = authorRepo;
+    public HomeController(CampusStorage campusStorage, AuthorStorage authorStorage) {
+        this.campusStorage = campusStorage;
+        this.authorStorage = authorStorage;
     }
 
     @RequestMapping({"", "/"})
     public String routeToCampuses(Model model) {
-        model.addAttribute("campuses", campusRepo.findAll());
-        model.addAttribute("authors", authorRepo.findAll());
+        model.addAttribute("campuses", campusStorage.findAllCampuses());
+        model.addAttribute("authors", authorStorage.findAllAuthors());
         return "home-template";
     }
 }
