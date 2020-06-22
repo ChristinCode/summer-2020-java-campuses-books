@@ -1,10 +1,8 @@
-package org.wcci.campuslibraries;
+package org.wcci.campuslibraries.storage;
 
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.wcci.campuslibraries.entities.Book;
+import org.wcci.campuslibraries.storage.repositories.BookRepository;
 
 @Service
 public class BookStorage {

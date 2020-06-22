@@ -1,6 +1,8 @@
-package org.wcci.campuslibraries;
+package org.wcci.campuslibraries.storage;
 
 import org.springframework.stereotype.Service;
+import org.wcci.campuslibraries.entities.Campus;
+import org.wcci.campuslibraries.storage.repositories.CampusRepository;
 
 @Service
 public class CampusStorage {

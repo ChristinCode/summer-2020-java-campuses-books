@@ -2,6 +2,9 @@ package org.wcci.campuslibraries;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.wcci.campuslibraries.entities.Campus;
+import org.wcci.campuslibraries.storage.repositories.CampusRepository;
+import org.wcci.campuslibraries.storage.CampusStorage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;

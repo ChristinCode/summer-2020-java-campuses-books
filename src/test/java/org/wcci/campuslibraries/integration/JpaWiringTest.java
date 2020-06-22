@@ -4,7 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.wcci.campuslibraries.*;
+import org.wcci.campuslibraries.entities.Author;
+import org.wcci.campuslibraries.entities.Book;
+import org.wcci.campuslibraries.entities.Campus;
+import org.wcci.campuslibraries.storage.repositories.AuthorRepository;
+import org.wcci.campuslibraries.storage.repositories.BookRepository;
+import org.wcci.campuslibraries.storage.repositories.CampusRepository;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package org.wcci.campuslibraries;
+package org.wcci.campuslibraries.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
