@@ -6,6 +6,8 @@ import org.wcci.campuslibraries.entities.Campus;
 import org.wcci.campuslibraries.storage.repositories.CampusRepository;
 import org.wcci.campuslibraries.storage.CampusStorage;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -22,7 +24,7 @@ public class CampusStorageTest {
 
     @Test
     public void shouldFindColumbus(){
-        when(campusRepo.findByName("Columbus")).thenReturn(new Campus("Columbus",""));
+        when(campusRepo.findByName("Columbus")).thenReturn(Optional.of(new Campus("Columbus","")));
         Campus result = underTest.findCampusByName("Columbus");
         assertThat(result.getName()).isEqualTo("Columbus");
     }

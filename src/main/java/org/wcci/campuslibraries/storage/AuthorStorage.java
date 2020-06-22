@@ -21,7 +21,6 @@ public class AuthorStorage {
         }else{
            retrievedAuthor= authorOptional.get();
         }
-
         return retrievedAuthor;
     }
 

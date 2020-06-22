@@ -69,4 +69,16 @@ public class HttpRequestTest {
         HttpStatus status = response.getStatusCode();
         assertThat(status).isEqualTo(HttpStatus.FOUND);
     }
+    @Test
+    public void authorGetRequestForAResourceThatDoesntExistShouldReturnA404ResponseCode() throws Exception {
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:"+port+"/authors/12", String.class);
+        HttpStatus status = response.getStatusCode();
+        assertThat(status).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+    @Test
+    public void campusGetRequestForAResourceThatDoesntExistShouldReturnA404ResponseCode() throws Exception {
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:"+port+"/campuses/The Moon", String.class);
+        HttpStatus status = response.getStatusCode();
+        assertThat(status).isEqualTo(HttpStatus.NOT_FOUND);
+    }
 }
