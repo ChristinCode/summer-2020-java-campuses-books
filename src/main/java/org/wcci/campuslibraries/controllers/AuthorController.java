@@ -1,30 +1,30 @@
-package org.wcci.campuslibraries;
+package org.wcci.campuslibraries.controllers;
 
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.wcci.campuslibraries.entities.Author;
+import org.wcci.campuslibraries.storage.AuthorStorage;
 
 @Controller
 public class AuthorController {
-    private AuthorRepository authorRepo;
+    private AuthorStorage authorStorage;
 
-    public AuthorController(AuthorRepository authorRepo){
-        this.authorRepo = authorRepo;
+    public AuthorController(AuthorStorage authorStorage){
+        this.authorStorage = authorStorage;
     }
 
     @GetMapping("authors/{id}")
     public String showSingleAuthor(@PathVariable Long id, Model model){
-        model.addAttribute("author", authorRepo.findById(id).get());
+        model.addAttribute("author", authorStorage.findAuthorById(id));
         return "author-template";
     }
     @PostMapping("authors/add")
     public String addAuthor(String firstName, String lastName){
         Author authorToAdd = new Author(firstName, lastName);
-        authorRepo.save(authorToAdd);
+        authorStorage.save(authorToAdd);
         return "redirect:/";
     }
 }

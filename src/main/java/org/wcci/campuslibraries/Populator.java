@@ -3,6 +3,12 @@ package org.wcci.campuslibraries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.wcci.campuslibraries.entities.Author;
+import org.wcci.campuslibraries.entities.Book;
+import org.wcci.campuslibraries.entities.Campus;
+import org.wcci.campuslibraries.storage.repositories.AuthorRepository;
+import org.wcci.campuslibraries.storage.repositories.BookRepository;
+import org.wcci.campuslibraries.storage.repositories.CampusRepository;
 
 @Component
 public class Populator implements CommandLineRunner {
