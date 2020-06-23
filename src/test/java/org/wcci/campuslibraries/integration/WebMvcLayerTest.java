@@ -66,9 +66,10 @@ public class WebMvcLayerTest {
         mockMvc.perform(get("/campuses/Columbus"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("campus"))
+                .andExpect(model().attributeExists("campus", "authors"))
                 .andExpect(view().name("campus-template"));
         verify(campusStorage).findCampusByName("Columbus");
+        verify(authorStorage).findAllAuthors();
     }
 
     @Test

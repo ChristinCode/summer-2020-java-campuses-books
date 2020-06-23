@@ -34,4 +34,8 @@ public class CampusStorage {
     public void addCampus(Campus campus) {
         campusRepo.save(campus);
     }
+
+    public boolean campusExists(String campusName)  {
+        return campusRepo.findByName(campusName).isPresent();
+    }
 }

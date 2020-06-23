@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import org.wcci.campuslibraries.controllers.CampusController;
 import org.wcci.campuslibraries.entities.Campus;
+import org.wcci.campuslibraries.storage.AuthorStorage;
 import org.wcci.campuslibraries.storage.CampusStorage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,15 +20,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class CampusControllerTest {
 
-    private CampusStorage mockStorage;
+    private CampusStorage mockCampusStorage;
+    private AuthorStorage mockAuthorStorage;
     private CampusController underTest;
     private Model model;
 
     @BeforeEach
     void setUp() {
         //Arrange
-        mockStorage = mock(CampusStorage.class);
-        underTest = new CampusController(mockStorage);
+        mockCampusStorage = mock(CampusStorage.class);
+        mockAuthorStorage = mock(AuthorStorage.class);
+        underTest = new CampusController(mockCampusStorage, mockAuthorStorage);
 
         model = Mockito.mock(Model.class);
     }
@@ -45,14 +48,14 @@ public class CampusControllerTest {
         //Act
         underTest.showSingleCampus("Columbus", model);
         //Assert
-        verify(mockStorage).findCampusByName("Columbus");
+        verify(mockCampusStorage).findCampusByName("Columbus");
     }
 
     @Test
     public void showSingleCampusAddsRetrievedCampusToModel() {
         //Arrange
         Campus testCampus = new Campus("Test Town", "TEST");
-        when(mockStorage.findCampusByName("Columbus")).thenReturn(testCampus);
+        when(mockCampusStorage.findCampusByName("Columbus")).thenReturn(testCampus);
         //Act
         underTest.showSingleCampus("Columbus", model);
         //Assert
@@ -70,7 +73,7 @@ public class CampusControllerTest {
     @Test
     public void addingCampusShouldAddNewCampusToCampusStorage() {
         underTest.addNewCampus("Test Name", "Test Description");
-        verify(mockStorage).addCampus(new Campus("Test Name", "Test Description"));
+        verify(mockCampusStorage).addCampus(new Campus("Test Name", "Test Description"));
     }
 
     @Test
@@ -81,7 +84,7 @@ public class CampusControllerTest {
                     .param("description", "Test Description"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        verify(mockStorage).addCampus(new Campus("Test Name", "Test Description"));
+        verify(mockCampusStorage).addCampus(new Campus("Test Name", "Test Description"));
     }
 
 }

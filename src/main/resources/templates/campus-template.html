@@ -21,24 +21,28 @@
             <a th:text= "${book.title}" th:href="@{'/books/'+${book.title}}" class="books__link">Head First Java</a>
           </li>
         </ul>
-        <form action="books/add" method="POST">
+        <form action="/books/add" method="POST">
+          <h3>New Book:</h3> 
           <label>
-            Title
+            Title:
           </label>
           <input type="text" name="title" id="">
           <label>
-            ISBN
+            ISBN:
           </label>
           <input type="text" name="isbn" id="">
           <label>
-            Description
+            Description:
           </label>
           <input type="text" name="description" id="">
-          <select name="authors" multiple id="">
-            <option th:each="author: ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + ${author.lastName}"></option>
+          <label>
+            Authors:
+          </label>
+          <select name="authorIds" multiple id="">
+            <option th:each="author: ${authors}" th:value="${author.id}" th:text="${author.firstName} + ' ' + ${author.lastName}"></option>
           </select>
-          <input type="hidden" name="campusId" th:value = "${campus.id}" id="">
-          
+          <input type="hidden" name="campusName" th:value = "${campus.name}" id="">
+          <button type="submit">Add New Book</button>
         </form>
       </main>
     </div>
