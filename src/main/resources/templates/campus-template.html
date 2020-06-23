@@ -34,6 +34,9 @@
             Description
           </label>
           <input type="text" name="description" id="">
+          <select name="authors" multiple id="">
+            <option th:each="author: ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + ${author.lastName}"></option>
+          </select>
           <input type="hidden" name="campusId" th:value = "${campus.id}" id="">
           
         </form>
